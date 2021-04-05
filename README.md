@@ -1,16 +1,21 @@
-# todoey_flutter
+![Rey Millenium Banner](https://github.com/reymillenium/images/blob/master/reymillenium_banner_800x200.png)
 
-A new Flutter application.
+# To-doey ✔️
 
-## Getting Started
+This is a Too-do list chat app using Flutter. It is a multi screen app with a simple functionality but full-on custom styling.
 
-This project is a starting point for a Flutter application.
+## Extra Dependencies
 
-A few resources to get you started if this is your first Flutter project:
+- 
+- 
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+  
+## Screen Shots
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Loading screen (temporal)
+![Welcome screen](https://github.com/reymillenium/images/blob/master/my_projects/16_BitCoinTicker/loading_screen.png)
+
+
+***
+## Contact
+Created by [Reinier Garcia](https://reiniergarcia.dev/) - feel free to contact me!
