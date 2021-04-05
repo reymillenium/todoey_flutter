@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Screens:
 
 // Components:
+import 'package:todoey_flutter/components/task_tile.dart';
 
 // Helpers:
 
@@ -19,31 +20,17 @@ class TasksList extends StatelessWidget {
       // padding: const EdgeInsets.only(left: 20, top: 40, right: 20),
       controller: _listViewScrollController,
       children: <Widget>[
-        ListTile(
-          leading: Text('Buy milk'),
-          trailing: Checkbox(
-            value: false,
-            onChanged: (bool newValue) {},
-          ),
+        TaskTile(
+          text: 'Buy milk',
+          checked: false,
         ),
-        ListTile(
-          leading: Text('Buy eggs'),
-          trailing: Checkbox(
-            value: false,
-            onChanged: (bool newValue) {},
-          ),
+        TaskTile(
+          text: 'Buy eggs',
+          checked: false,
         ),
-        ListTile(
-          leading: Text(
-            'Buy bread',
-            style: TextStyle(
-              decoration: TextDecoration.lineThrough,
-            ),
-          ),
-          trailing: Checkbox(
-            value: true,
-            onChanged: (bool newValue) {},
-          ),
+        TaskTile(
+          text: 'Buy bread',
+          checked: true,
         ),
       ],
     );
