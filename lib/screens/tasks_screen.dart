@@ -11,6 +11,18 @@ import 'package:flutter/material.dart';
 import 'package:todoey_flutter/utilities/constants.dart';
 
 class TasksScreen extends StatelessWidget {
+  final _listViewScrollController = ScrollController();
+
+  void scrollListViewSmoothly() {
+    _listViewScrollController.animateTo(
+      _listViewScrollController.position.maxScrollExtent,
+      // duration: Duration(seconds: 1),
+      duration: Duration(milliseconds: 500),
+      // curve: Curves.fastOutSlowIn,
+      curve: Curves.easeOut,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,47 +79,46 @@ class TasksScreen extends StatelessWidget {
                   topRight: Radius.circular(20),
                 ),
               ),
-              child: Padding(
+              child: ListView(
                 padding: const EdgeInsets.only(left: 30, top: 40, right: 30),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Buy milk'),
-                        Checkbox(
-                          value: false,
-                          onChanged: (bool newValue) {},
-                        )
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Buy eggs'),
-                        Checkbox(
-                          value: false,
-                          onChanged: (bool newValue) {},
-                        )
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Buy bread',
-                          style: TextStyle(
-                            decoration: TextDecoration.lineThrough,
-                          ),
+                controller: _listViewScrollController,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Buy milk'),
+                      Checkbox(
+                        value: false,
+                        onChanged: (bool newValue) {},
+                      )
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Buy eggs'),
+                      Checkbox(
+                        value: false,
+                        onChanged: (bool newValue) {},
+                      )
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Buy bread',
+                        style: TextStyle(
+                          decoration: TextDecoration.lineThrough,
                         ),
-                        Checkbox(
-                          value: true,
-                          onChanged: (bool newValue) {},
-                        )
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                      Checkbox(
+                        value: true,
+                        onChanged: (bool newValue) {},
+                      )
+                    ],
+                  ),
+                ],
               ),
             ),
           )
