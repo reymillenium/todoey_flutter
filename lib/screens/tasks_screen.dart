@@ -69,8 +69,12 @@ class TasksScreen extends StatelessWidget {
               ],
             ),
           ),
+
+          // List of tasks Component:
           Expanded(
             child: Container(
+              // padding: const EdgeInsets.only(left: 20, top: 0, right: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -80,43 +84,34 @@ class TasksScreen extends StatelessWidget {
                 ),
               ),
               child: ListView(
-                padding: const EdgeInsets.only(left: 30, top: 40, right: 30),
+                // padding: const EdgeInsets.only(left: 20, top: 40, right: 20),
                 controller: _listViewScrollController,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Buy milk'),
-                      Checkbox(
-                        value: false,
-                        onChanged: (bool newValue) {},
-                      )
-                    ],
+                children: <Widget>[
+                  ListTile(
+                    leading: Text('Buy milk'),
+                    trailing: Checkbox(
+                      value: false,
+                      onChanged: (bool newValue) {},
+                    ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Buy eggs'),
-                      Checkbox(
-                        value: false,
-                        onChanged: (bool newValue) {},
-                      )
-                    ],
+                  ListTile(
+                    leading: Text('Buy eggs'),
+                    trailing: Checkbox(
+                      value: false,
+                      onChanged: (bool newValue) {},
+                    ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Buy bread',
-                        style: TextStyle(
-                          decoration: TextDecoration.lineThrough,
-                        ),
+                  ListTile(
+                    leading: Text(
+                      'Buy bread',
+                      style: TextStyle(
+                        decoration: TextDecoration.lineThrough,
                       ),
-                      Checkbox(
-                        value: true,
-                        onChanged: (bool newValue) {},
-                      )
-                    ],
+                    ),
+                    trailing: Checkbox(
+                      value: true,
+                      onChanged: (bool newValue) {},
+                    ),
                   ),
                 ],
               ),
