@@ -17,41 +17,61 @@ class TasksScreen extends StatelessWidget {
       // backgroundColor: Colors.lightBlueAccent,
       backgroundColor: kLightBlueBackground,
       body: Container(
-        padding: EdgeInsets.fromLTRB(30.0, 60.0, 30.0, 30.0),
+        // padding: EdgeInsets.fromLTRB(30.0, 60.0, 30.0, 30.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CircleAvatar(
-              backgroundColor: Colors.white,
-              radius: 30.0,
-              child: Icon(
-                Icons.list,
-                size: 30.0,
-                color: kLightBlueBackground,
+            Padding(
+              padding: const EdgeInsets.only(left: 30, top: 60, right: 30),
+              child: CircleAvatar(
+                backgroundColor: Colors.white,
+                radius: 30.0,
+                child: Icon(
+                  Icons.list,
+                  size: 30.0,
+                  color: kLightBlueBackground,
+                ),
+              ),
+            ),
+            // CircleAvatar(
+            //   backgroundColor: Colors.white,
+            //   radius: 30.0,
+            //   child: Icon(
+            //     Icons.list,
+            //     size: 30.0,
+            //     color: kLightBlueBackground,
+            //   ),
+            // ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 30, right: 30),
+              child: Text(
+                'Todoey',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 50.0,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 30, right: 30),
+              child: Text(
+                '12 tasks',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                ),
               ),
             ),
             SizedBox(
-              height: 10.0,
-            ),
-            Text(
-              'Todoey',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 50.0,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            Text(
-              '12 tasks',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-              ),
+              height: 30.0,
             ),
             Expanded(
               child: Container(
-                // width: MediaQuery.of(context).size.width,
-                // height: 30,
+                width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -59,9 +79,57 @@ class TasksScreen extends StatelessWidget {
                     topRight: Radius.circular(20),
                   ),
                 ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 30, top: 40, right: 30),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Buy milk'),
+                          Checkbox(
+                            value: false,
+                            onChanged: (bool newValue) {},
+                          )
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('Buy eggs'),
+                          Checkbox(
+                            value: false,
+                            onChanged: (bool newValue) {},
+                          )
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Buy bread',
+                            style: TextStyle(
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                          ),
+                          Checkbox(
+                            value: true,
+                            onChanged: (bool newValue) {},
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ),
             )
           ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: kLightBlueBackground,
+        child: Icon(
+          Icons.add,
         ),
       ),
     );
