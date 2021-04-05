@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Screens:
 
 // Components:
+import 'package:todoey_flutter/components/tasks_list.dart';
 
 // Helpers:
 
@@ -83,38 +84,7 @@ class TasksScreen extends StatelessWidget {
                   topRight: Radius.circular(20),
                 ),
               ),
-              child: ListView(
-                // padding: const EdgeInsets.only(left: 20, top: 40, right: 20),
-                controller: _listViewScrollController,
-                children: <Widget>[
-                  ListTile(
-                    leading: Text('Buy milk'),
-                    trailing: Checkbox(
-                      value: false,
-                      onChanged: (bool newValue) {},
-                    ),
-                  ),
-                  ListTile(
-                    leading: Text('Buy eggs'),
-                    trailing: Checkbox(
-                      value: false,
-                      onChanged: (bool newValue) {},
-                    ),
-                  ),
-                  ListTile(
-                    leading: Text(
-                      'Buy bread',
-                      style: TextStyle(
-                        decoration: TextDecoration.lineThrough,
-                      ),
-                    ),
-                    trailing: Checkbox(
-                      value: true,
-                      onChanged: (bool newValue) {},
-                    ),
-                  ),
-                ],
-              ),
+              child: TasksList(),
             ),
           )
         ],
@@ -129,3 +99,49 @@ class TasksScreen extends StatelessWidget {
     );
   }
 }
+
+// class TasksList extends StatelessWidget {
+//   const TasksList({
+//     Key key,
+//     @required ScrollController listViewScrollController,
+//   })  : _listViewScrollController = listViewScrollController,
+//         super(key: key);
+//
+//   final ScrollController _listViewScrollController;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListView(
+//       // padding: const EdgeInsets.only(left: 20, top: 40, right: 20),
+//       controller: _listViewScrollController,
+//       children: <Widget>[
+//         ListTile(
+//           leading: Text('Buy milk'),
+//           trailing: Checkbox(
+//             value: false,
+//             onChanged: (bool newValue) {},
+//           ),
+//         ),
+//         ListTile(
+//           leading: Text('Buy eggs'),
+//           trailing: Checkbox(
+//             value: false,
+//             onChanged: (bool newValue) {},
+//           ),
+//         ),
+//         ListTile(
+//           leading: Text(
+//             'Buy bread',
+//             style: TextStyle(
+//               decoration: TextDecoration.lineThrough,
+//             ),
+//           ),
+//           trailing: Checkbox(
+//             value: true,
+//             onChanged: (bool newValue) {},
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
