@@ -117,6 +117,7 @@ class TasksScreen extends StatelessWidget {
         backgroundColor: kLightBlueBackground,
         child: Icon(
           Icons.add,
+          size: 40,
         ),
       ),
     );
