@@ -24,6 +24,84 @@ class TasksScreen extends StatelessWidget {
     );
   }
 
+  Widget buildModalBottomSheet(BuildContext context) {
+    return Expanded(
+      child: Container(
+        // padding: const EdgeInsets.only(left: 20, top: 0, right: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 30.0),
+          child: Column(
+            children: [
+              Text(
+                'Add Task',
+                style: TextStyle(
+                  color: kLightBlueBackground,
+                  fontSize: 30,
+                ),
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  border: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      // color: kLightBlueBackground,
+                      color: Colors.red,
+                      // width: 30,
+                    ),
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: kLightBlueBackground,
+                      width: 4.0,
+                    ),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.lightBlueAccent,
+                      // color: Colors.red,
+                      width: 6.0,
+                    ),
+                  ),
+                ),
+                style: TextStyle(),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 30.0),
+                child: Material(
+                  color: kLightBlueBackground,
+                  // borderRadius: BorderRadius.circular(12.0),
+                  elevation: 5.0,
+                  child: MaterialButton(
+                    onPressed: () {},
+                    // minWidth: 300.0,
+                    minWidth: double.infinity,
+                    height: 42.0,
+                    child: Text(
+                      'Add',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,53 +173,15 @@ class TasksScreen extends StatelessWidget {
           Icons.add,
           size: 40,
         ),
+        onPressed: () {
+          //
+          showModalBottomSheet(
+            backgroundColor: Colors.transparent,
+            context: context,
+            builder: buildModalBottomSheet,
+          );
+        },
       ),
     );
   }
 }
-
-// class TasksList extends StatelessWidget {
-//   const TasksList({
-//     Key key,
-//     @required ScrollController listViewScrollController,
-//   })  : _listViewScrollController = listViewScrollController,
-//         super(key: key);
-//
-//   final ScrollController _listViewScrollController;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return ListView(
-//       // padding: const EdgeInsets.only(left: 20, top: 40, right: 20),
-//       controller: _listViewScrollController,
-//       children: <Widget>[
-//         ListTile(
-//           leading: Text('Buy milk'),
-//           trailing: Checkbox(
-//             value: false,
-//             onChanged: (bool newValue) {},
-//           ),
-//         ),
-//         ListTile(
-//           leading: Text('Buy eggs'),
-//           trailing: Checkbox(
-//             value: false,
-//             onChanged: (bool newValue) {},
-//           ),
-//         ),
-//         ListTile(
-//           leading: Text(
-//             'Buy bread',
-//             style: TextStyle(
-//               decoration: TextDecoration.lineThrough,
-//             ),
-//           ),
-//           trailing: Checkbox(
-//             value: true,
-//             onChanged: (bool newValue) {},
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
