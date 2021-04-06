@@ -49,6 +49,7 @@ class TasksScreen extends StatelessWidget {
                 ),
               ),
               TextField(
+                autofocus: true,
                 decoration: InputDecoration(
                   border: UnderlineInputBorder(
                     borderSide: BorderSide(
