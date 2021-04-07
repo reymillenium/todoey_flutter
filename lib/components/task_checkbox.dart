@@ -27,9 +27,7 @@ class TaskCheckbox extends StatelessWidget {
     return Checkbox(
       activeColor: kLightBlueBackground,
       value: isChecked,
-      onChanged: (bool newValue) {
-        onChanged(newValue);
-      },
+      onChanged: onChanged,
     );
   }
 }

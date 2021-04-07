@@ -37,7 +37,7 @@ class _TaskTileState extends State<TaskTile> {
     taskText = widget.taskText;
   }
 
-  _onChangeHandler(bool newValue) {
+  void _onChangedHandler(bool newValue) {
     setState(() {
       isChecked = newValue;
     });
@@ -55,7 +55,7 @@ class _TaskTileState extends State<TaskTile> {
       trailing: TaskCheckbox(
         isChecked: isChecked,
         // onChanged: (newValue) => _onChangeHandler(newValue),
-        onChanged: _onChangeHandler,
+        onChanged: _onChangedHandler,
       ),
     );
   }
