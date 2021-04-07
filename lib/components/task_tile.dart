@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Screens:
 
 // Components:
+import 'package:todoey_flutter/components/task_checkbox.dart';
 
 // Helpers:
 
@@ -36,6 +37,12 @@ class _TaskTileState extends State<TaskTile> {
     taskText = widget.taskText;
   }
 
+  _onChangeHandler(bool newValue) {
+    setState(() {
+      isChecked = newValue;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -45,44 +52,11 @@ class _TaskTileState extends State<TaskTile> {
           decoration: (isChecked ? TextDecoration.lineThrough : TextDecoration.none),
         ),
       ),
-      trailing: Checkbox(
-        activeColor: kLightBlueBackground,
-        value: isChecked,
-        onChanged: (bool newValue) {
-          setState(() {
-            isChecked = newValue;
-          });
-        },
+      trailing: TaskCheckbox(
+        isChecked: isChecked,
+        // onChanged: (newValue) => _onChangeHandler(newValue),
+        onChanged: _onChangeHandler,
       ),
     );
   }
 }
-
-// class TaskCheckbox extends StatefulWidget {
-//   // const TaskCheckbox({
-//   //   Key key,
-//   //   @required this.checked,
-//   // }) : super(key: key);
-//
-//   // final bool checked;
-//
-//   @override
-//   _TaskCheckboxState createState() => _TaskCheckboxState();
-// }
-//
-// class _TaskCheckboxState extends State<TaskCheckbox> {
-//   bool isChecked = false;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Checkbox(
-//       activeColor: kLightBlueBackground,
-//       value: isChecked,
-//       onChanged: (bool newValue) {
-//         setState(() {
-//           isChecked = newValue;
-//         });
-//       },
-//     );
-//   }
-// }
