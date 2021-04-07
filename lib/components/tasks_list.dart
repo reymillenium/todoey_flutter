@@ -21,16 +21,13 @@ class TasksList extends StatelessWidget {
       controller: _listViewScrollController,
       children: <Widget>[
         TaskTile(
-          text: 'Buy milk',
-          checked: false,
+          taskText: 'Buy milk',
         ),
         TaskTile(
-          text: 'Buy eggs',
-          checked: false,
+          taskText: 'Buy eggs',
         ),
         TaskTile(
-          text: 'Buy bread',
-          checked: true,
+          taskText: 'Buy bread',
         ),
       ],
     );
