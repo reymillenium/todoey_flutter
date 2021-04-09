@@ -1,5 +1,6 @@
 // Packages:
 import 'package:flutter/material.dart';
+// import 'package:uuid/uuid.dart';
 
 // Screens:
 
@@ -22,8 +23,8 @@ class TasksList extends StatefulWidget {
 class _TasksListState extends State<TasksList> {
   // Properties:
   List<Task> tasks = [
-    Task(taskText: 'Buy milk'),
-    Task(taskText: 'Buy eggs'),
+    Task(taskText: 'Buy milk', isChecked: false),
+    Task(taskText: 'Buy eggs', isChecked: false),
     Task(taskText: 'Buy bread', isChecked: true),
   ];
   final _listViewScrollController = ScrollController();
@@ -31,10 +32,13 @@ class _TasksListState extends State<TasksList> {
   List<Widget> getTaskList() {
     List<Widget> taskList = [];
 
-    tasks.forEach((task) {
+    tasks.asMap().forEach((index, task) {
       Widget newTask = TaskTile(
         taskText: task.taskText,
         isChecked: task.isChecked,
+        key: Key(index.toString()),
+        // onChangedHandler: (index) => onChangedHandler(index),
+        onChangedHandler: onChangedHandler(index),
       );
       taskList.add(newTask);
     });
@@ -42,12 +46,35 @@ class _TasksListState extends State<TasksList> {
     return taskList;
   }
 
+  Function onChangedHandler(int index) {
+    return (bool newValue) {
+      setState(() {
+        // tasks[index].isChecked = newValue;
+        tasks[index].toggleChecked();
+      });
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      // padding: const EdgeInsets.only(left: 20, top: 40, right: 20),
+    // return ListView(
+    //   padding: const EdgeInsets.only(left: 20, top: 40, right: 20),
+    //   controller: _listViewScrollController,
+    //   children: getTaskList(),
+    // );
+    return ListView.builder(
+      padding: const EdgeInsets.only(left: 20, top: 40, right: 20),
       controller: _listViewScrollController,
-      children: getTaskList(),
+      itemBuilder: (context, index) {
+        return TaskTile(
+          key: Key(index.toString()),
+          taskText: tasks[index].taskText,
+          isChecked: tasks[index].isChecked,
+          onChangedHandler: onChangedHandler(index),
+          // onChangedHandler: (newValue) {},
+        );
+      },
+      itemCount: tasks.length,
     );
   }
 }

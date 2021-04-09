@@ -11,40 +11,20 @@ import 'package:todoey_flutter/components/task_checkbox.dart';
 // Utilities:
 import 'package:todoey_flutter/utilities/constants.dart';
 
-class TaskTile extends StatefulWidget {
+class TaskTile extends StatelessWidget {
   // Properties:
-  final taskText;
-  final isChecked;
+  final Key key;
+  final String taskText;
+  final bool isChecked;
+  final Function onChangedHandler;
 
-  // Constructor:
+// Constructor:
   const TaskTile({
-    Key key,
+    this.key,
     this.taskText,
     this.isChecked,
+    this.onChangedHandler,
   }) : super(key: key);
-
-  @override
-  _TaskTileState createState() => _TaskTileState();
-}
-
-class _TaskTileState extends State<TaskTile> {
-  // Properties:
-  String taskText;
-  bool isChecked = false;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    taskText = widget.taskText;
-    isChecked = widget.isChecked;
-  }
-
-  void _onChangedHandler(bool newValue) {
-    setState(() {
-      isChecked = newValue;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +37,9 @@ class _TaskTileState extends State<TaskTile> {
       ),
       trailing: TaskCheckbox(
         isChecked: isChecked,
-        // onChanged: (newValue) => _onChangeHandler(newValue),
-        onChanged: _onChangedHandler,
+        // onChanged: (newValue) => onChangeHandler(newValue),
+        // onChanged: onChangedHandler(key),
+        onChanged: onChangedHandler,
       ),
     );
   }
