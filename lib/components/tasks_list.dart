@@ -15,19 +15,17 @@ import 'package:todoey_flutter/components/task_tile.dart';
 // Utilities:
 import 'package:todoey_flutter/utilities/constants.dart';
 
-class TasksList extends StatefulWidget {
-  @override
-  _TasksListState createState() => _TasksListState();
-}
-
-class _TasksListState extends State<TasksList> {
+class TasksList extends StatelessWidget {
   // Properties:
-  List<Task> tasks = [
-    Task(taskText: 'Buy milk', isChecked: false),
-    Task(taskText: 'Buy eggs', isChecked: false),
-    Task(taskText: 'Buy bread', isChecked: true),
-  ];
+  final tasks;
+  final Function onChangedHandler;
   final _listViewScrollController = ScrollController();
+
+  // Constructor:
+  TasksList({
+    this.tasks,
+    this.onChangedHandler,
+  });
 
   List<Widget> getTaskList() {
     List<Widget> taskList = [];
@@ -44,15 +42,6 @@ class _TasksListState extends State<TasksList> {
     });
 
     return taskList;
-  }
-
-  Function onChangedHandler(int index) {
-    return (bool newValue) {
-      setState(() {
-        // tasks[index].isChecked = newValue;
-        tasks[index].toggleChecked();
-      });
-    };
   }
 
   @override

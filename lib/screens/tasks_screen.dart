@@ -4,15 +4,30 @@ import 'package:flutter/material.dart';
 // Screens:
 import 'package:todoey_flutter/screens/add_task_screen.dart';
 
+// Models:
+import 'package:todoey_flutter/models/task.dart';
+
 // Components:
 import 'package:todoey_flutter/components/tasks_list.dart';
+import 'package:todoey_flutter/components/task_tile.dart';
 
 // Helpers:
 
 // Utilities:
 import 'package:todoey_flutter/utilities/constants.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
+  @override
+  _TasksScreenState createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  // Properties:
+  List<Task> tasks = [
+    Task(taskText: 'Buy milk', isChecked: false),
+    Task(taskText: 'Buy eggs', isChecked: false),
+    Task(taskText: 'Buy bread', isChecked: true),
+  ];
   final _listViewScrollController = ScrollController();
 
   void scrollListViewSmoothly() {
@@ -23,6 +38,15 @@ class TasksScreen extends StatelessWidget {
       // curve: Curves.fastOutSlowIn,
       curve: Curves.easeOut,
     );
+  }
+
+  Function onChangedHandler(int index) {
+    return (bool newValue) {
+      setState(() {
+        // tasks[index].isChecked = newValue;
+        tasks[index].toggleChecked();
+      });
+    };
   }
 
   @override
@@ -85,7 +109,11 @@ class TasksScreen extends StatelessWidget {
                   topRight: Radius.circular(20),
                 ),
               ),
-              child: TasksList(),
+              child: TasksList(
+                tasks: tasks,
+                // onChangedHandler: (index) => onChangedHandler(index),
+                onChangedHandler: onChangedHandler,
+              ),
             ),
           )
         ],
