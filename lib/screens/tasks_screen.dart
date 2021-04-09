@@ -56,6 +56,12 @@ class _TasksScreenState extends State<TasksScreen> {
     });
   }
 
+  String getTaskAmountLabel() {
+    int taskAmount = tasks.length;
+    String pluralization = taskAmount == 1 ? '' : 's';
+    return '$taskAmount task$pluralization';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,7 +96,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   ),
                 ),
                 Text(
-                  '12 tasks',
+                  getTaskAmountLabel(),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
