@@ -11,13 +11,32 @@ import 'package:todoey_flutter/components/tasks_list.dart';
 // Utilities:
 import 'package:todoey_flutter/utilities/constants.dart';
 
-class AddTaskScreen extends StatelessWidget {
+class AddTaskScreen extends StatefulWidget {
+  // Properties:
+  final onPressedHandler;
+  // String taskText = '';
+
   const AddTaskScreen({
     Key key,
+    this.onPressedHandler,
     // this.context,
   }) : super(key: key);
 
-  // final BuildContext context;
+  @override
+  _AddTaskScreenState createState() => _AddTaskScreenState();
+}
+
+class _AddTaskScreenState extends State<AddTaskScreen> {
+  // Properties:
+  Function onPressedHandler;
+  String taskText = '';
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    onPressedHandler = widget.onPressedHandler;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +64,8 @@ class AddTaskScreen extends StatelessWidget {
                     fontSize: 30,
                   ),
                 ),
+
+                // Input
                 TextField(
                   autofocus: true,
                   decoration: InputDecoration(
@@ -70,7 +91,14 @@ class AddTaskScreen extends StatelessWidget {
                     ),
                   ),
                   style: TextStyle(),
+                  onChanged: (String newValue) {
+                    // setState(() {
+                    taskText = newValue;
+                    // });
+                  },
                 ),
+
+                // Add button:
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 30.0),
                   child: Material(
@@ -78,7 +106,11 @@ class AddTaskScreen extends StatelessWidget {
                     // borderRadius: BorderRadius.circular(12.0),
                     elevation: 5.0,
                     child: MaterialButton(
-                      onPressed: () {},
+                      // onPressed: () => onPressedHandler(taskText),
+                      onPressed: () {
+                        onPressedHandler(taskText);
+                        Navigator.pop(context);
+                      },
                       // minWidth: 300.0,
                       minWidth: double.infinity,
                       height: 42.0,

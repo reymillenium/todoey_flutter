@@ -49,6 +49,13 @@ class _TasksScreenState extends State<TasksScreen> {
     };
   }
 
+  void onPressedHandler(String taskText) {
+    Task newTask = Task(taskText: taskText);
+    setState(() {
+      tasks.add(newTask);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,7 +136,9 @@ class _TasksScreenState extends State<TasksScreen> {
             backgroundColor: Colors.transparent,
             isScrollControlled: true,
             context: context,
-            builder: (context) => AddTaskScreen(),
+            builder: (context) => AddTaskScreen(
+              onPressedHandler: onPressedHandler,
+            ),
           );
         },
       ),
