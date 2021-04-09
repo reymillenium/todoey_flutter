@@ -14,11 +14,13 @@ import 'package:todoey_flutter/utilities/constants.dart';
 class TaskTile extends StatefulWidget {
   // Properties:
   final taskText;
+  final isChecked;
 
   // Constructor:
   const TaskTile({
     Key key,
     this.taskText,
+    this.isChecked,
   }) : super(key: key);
 
   @override
@@ -35,6 +37,7 @@ class _TaskTileState extends State<TaskTile> {
     // TODO: implement initState
     super.initState();
     taskText = widget.taskText;
+    isChecked = widget.isChecked;
   }
 
   void _onChangedHandler(bool newValue) {
