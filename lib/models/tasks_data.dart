@@ -23,7 +23,16 @@ class TasksData extends ChangeNotifier {
     Task(taskText: 'Buy bread', isChecked: true),
   ];
 
-  // Setters:
+  // Getters:
+  int get tasksCount {
+    return _tasks.length;
+  }
+
+  List<Task> get tasks {
+    return _tasks;
+  }
+
+  // Public Methods:
   void addTask(String taskText) {
     Task newTask = Task(taskText: taskText);
     _tasks.add(newTask);
@@ -40,12 +49,9 @@ class TasksData extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Getters:
-  int tasksAmount() {
-    return _tasks.length;
-  }
-
-  List<Task> tasks() {
-    return _tasks;
+  String tasksCountLabel() {
+    int taskAmount = tasksCount;
+    String pluralization = taskAmount == 1 ? '' : 's';
+    return '$taskAmount task$pluralization';
   }
 }

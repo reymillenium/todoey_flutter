@@ -24,8 +24,8 @@ class TasksList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TasksData tasksData = Provider.of<TasksData>(context, listen: false);
-    List<Task> tasks = tasksData.tasks();
-    void Function(dynamic) onDeleteTaskHandler = (index) => tasksData.deleteTask(index);
+    List<Task> tasks = tasksData.tasks;
+    void Function(int) onDeleteTaskHandler = (index) => tasksData.deleteTask(index);
     Function onChangedHandler = (index) => (bool newValue) => tasksData.toggleChecked(index);
 
     return ListView.builder(

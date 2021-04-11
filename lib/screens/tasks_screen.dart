@@ -59,12 +59,7 @@ class _TasksScreenState extends State<TasksScreen> {
   @override
   Widget build(BuildContext context) {
     TasksData tasksData = Provider.of<TasksData>(context, listen: true);
-
-    String getTaskAmountLabel() {
-      int taskAmount = tasksData.tasksAmount();
-      String pluralization = taskAmount == 1 ? '' : 's';
-      return '$taskAmount task$pluralization';
-    }
+    String tasksCountLabel = tasksData.tasksCountLabel();
 
     return Scaffold(
       backgroundColor: kLightBlueBackground,
@@ -97,7 +92,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   ),
                 ),
                 Text(
-                  getTaskAmountLabel(),
+                  tasksCountLabel,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
