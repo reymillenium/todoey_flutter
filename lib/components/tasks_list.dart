@@ -51,19 +51,13 @@ class TasksList extends StatelessWidget {
     // TasksData tasksData = Provider.of<TasksData>(context, listen: true);
     // List<Task> tasks = Provider.of<TasksData>(context, listen: true).tasks();
     var onDeleteTaskHandler = (index) => Provider.of<TasksData>(context, listen: false).deleteTask(index);
-    // var onChangedHandler = (index) => Provider.of<TasksData>(context, listen: false).deleteTask(index);
-    Function onChangedHandler = (index) {
-      return (bool newValue) => Provider.of<TasksData>(context, listen: false).toggleChecked(index);
-      // return (bool newValue) {
-      //   Provider.of<TasksData>(context, listen: false).toggleChecked(index);
-      // };
-    };
-
-    // Function onChangedHandler(int index) {
-    //   return (bool newValue) {
-    //     tasksData.toggleChecked(index);
-    //   };
-    // }
+    // Function onChangedHandler = (index) {
+    //   return (bool newValue) => Provider.of<TasksData>(context, listen: false).toggleChecked(index);
+    //   // return (bool newValue) {
+    //   //   Provider.of<TasksData>(context, listen: false).toggleChecked(index);
+    //   // };
+    // };
+    Function onChangedHandler = (index) => (bool newValue) => Provider.of<TasksData>(context, listen: false).toggleChecked(index);
 
     // return ListView(
     //   padding: const EdgeInsets.only(left: 20, top: 40, right: 20),
