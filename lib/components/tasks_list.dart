@@ -50,6 +50,7 @@ class TasksList extends StatelessWidget {
   Widget build(BuildContext context) {
     // TasksData tasksData = Provider.of<TasksData>(context, listen: true);
     // List<Task> tasks = Provider.of<TasksData>(context, listen: true).tasks();
+    var onDeleteTaskHandler = (index) => Provider.of<TasksData>(context, listen: false).deleteTask(index);
 
     // return ListView(
     //   padding: const EdgeInsets.only(left: 20, top: 40, right: 20),
@@ -65,6 +66,7 @@ class TasksList extends StatelessWidget {
           taskText: tasks[index].taskText,
           isChecked: tasks[index].isChecked,
           onChangedHandler: onChangedHandler(index),
+          onDeleteTaskHandler: () => onDeleteTaskHandler(index),
           // onChangedHandler: (newValue) {},
         );
       },
