@@ -16,29 +16,10 @@ import 'package:todoey_flutter/components/tasks_list.dart';
 // Utilities:
 import 'package:todoey_flutter/utilities/constants.dart';
 
-class AddTaskScreen extends StatefulWidget {
-  // Properties:
-
-  const AddTaskScreen({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  _AddTaskScreenState createState() => _AddTaskScreenState();
-}
-
-class _AddTaskScreenState extends State<AddTaskScreen> {
-  // Properties:
-  String taskText = '';
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
+class AddTaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String taskText = '';
     var onPressedHandler = (taskText) => Provider.of<TasksData>(context, listen: false).addTask(taskText);
 
     return SingleChildScrollView(
