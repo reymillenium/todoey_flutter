@@ -16,7 +16,13 @@ import 'package:todoey_flutter/components/tasks_list.dart';
 // Utilities:
 import 'package:todoey_flutter/utilities/constants.dart';
 
-class AddTaskScreen extends StatelessWidget {
+class UpdateTaskScreen extends StatelessWidget {
+  // Properties:
+  final taskText;
+
+  // Constructor:
+  UpdateTaskScreen(this.taskText);
+
   @override
   Widget build(BuildContext context) {
     String taskText = '';

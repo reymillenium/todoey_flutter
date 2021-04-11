@@ -39,12 +39,25 @@ class TasksData extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Public Methods:
+  void updateTask(int index, String taskText) {
+    Task updatingTask = _tasks[index];
+    updatingTask.taskText = taskText;
+    notifyListeners();
+  }
+
   void toggleChecked(int index) {
     _tasks[index].toggleChecked();
     notifyListeners();
   }
 
-  void deleteTask(int index) {
+  void deleteTask(int index, BuildContext context) {
+    // _tasks.removeAt(index);
+    // notifyListeners();
+    _showDialog(index, context);
+  }
+
+  void _removeTask(int index) {
     _tasks.removeAt(index);
     notifyListeners();
   }
@@ -53,5 +66,36 @@ class TasksData extends ChangeNotifier {
     int taskAmount = tasksCount;
     String pluralization = taskAmount == 1 ? '' : 's';
     return '$taskAmount task$pluralization';
+  }
+
+  void _showDialog(int index, BuildContext context) {
+    // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Removal Alert"),
+          content: new Text("Are you sure?"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new TextButton(
+              child: new Text("OK"),
+              onPressed: () {
+                _removeTask(index);
+                Navigator.of(context).pop();
+              },
+            ),
+            // usually buttons at the bottom of the dialog
+            new TextButton(
+              child: new Text("Cancel"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

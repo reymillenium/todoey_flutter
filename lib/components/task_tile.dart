@@ -31,9 +31,14 @@ class TaskTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: IconButton(
-        icon: Icon(Icons.delete),
-        onPressed: onDeleteTaskHandler,
+      // leading: IconButton(
+      //   icon: Icon(Icons.delete),
+      //   onPressed: onDeleteTaskHandler,
+      // ),
+      leading: TaskCheckbox(
+        isChecked: isChecked,
+        // onChanged: (newValue) => onChangeHandler(newValue),
+        onChanged: onChangedHandler,
       ),
       title: Text(
         taskText,
@@ -41,10 +46,14 @@ class TaskTile extends StatelessWidget {
           decoration: (isChecked ? TextDecoration.lineThrough : TextDecoration.none),
         ),
       ),
-      trailing: TaskCheckbox(
-        isChecked: isChecked,
-        // onChanged: (newValue) => onChangeHandler(newValue),
-        onChanged: onChangedHandler,
+      // trailing: TaskCheckbox(
+      //   isChecked: isChecked,
+      //   // onChanged: (newValue) => onChangeHandler(newValue),
+      //   onChanged: onChangedHandler,
+      // ),
+      trailing: IconButton(
+        icon: Icon(Icons.delete),
+        onPressed: onDeleteTaskHandler,
       ),
     );
   }

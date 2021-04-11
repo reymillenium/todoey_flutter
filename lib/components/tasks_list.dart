@@ -31,11 +31,11 @@ class TasksList extends StatelessWidget {
     return Consumer<TasksData>(
       builder: (context, tasksData, child) {
         List<Task> tasks = tasksData.tasks;
-        void Function(int) onDeleteTaskHandler = (index) => tasksData.deleteTask(index);
+        void Function(int, BuildContext) onDeleteTaskHandler = (index, context) => tasksData.deleteTask(index, context);
         Function onChangedHandler = (index) => (bool newValue) => tasksData.toggleChecked(index);
 
         return ListView.builder(
-          padding: const EdgeInsets.only(left: 20, top: 40, right: 20),
+          padding: const EdgeInsets.only(left: 0, top: 20, right: 0),
           controller: _listViewScrollController,
           itemBuilder: (context, index) {
             return TaskTile(
@@ -43,7 +43,7 @@ class TasksList extends StatelessWidget {
               taskText: tasks[index].taskText,
               isChecked: tasks[index].isChecked,
               onChangedHandler: onChangedHandler(index),
-              onDeleteTaskHandler: () => onDeleteTaskHandler(index),
+              onDeleteTaskHandler: () => onDeleteTaskHandler(index, context),
             );
           },
           itemCount: tasksData.tasksCount,
