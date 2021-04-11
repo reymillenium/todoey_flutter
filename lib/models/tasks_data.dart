@@ -21,7 +21,13 @@ class TasksData extends ChangeNotifier {
   List<Task> _tasks = [
     Task(taskText: 'Buy milk', isChecked: false),
     Task(taskText: 'Buy eggs', isChecked: false),
-    Task(taskText: 'Buy bread', isChecked: true),
+    Task(taskText: 'Buy Cuban Bread', isChecked: true),
+    Task(taskText: 'Buy chicken', isChecked: false),
+    Task(taskText: 'Buy apples', isChecked: false),
+    Task(taskText: 'Buy pork', isChecked: false),
+    Task(taskText: 'Buy lots of Corona beer', isChecked: false),
+    Task(taskText: 'Finish this app', isChecked: false),
+    Task(taskText: 'Watch a movie', isChecked: false),
   ];
 
   // Getters:
