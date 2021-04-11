@@ -151,7 +151,7 @@ class _TasksScreenState extends State<TasksScreen> {
               child: TasksList(
                 tasks: tasks,
                 // onChangedHandler: (index) => onChangedHandler(index),
-                onChangedHandler: onChangedHandler,
+                // onChangedHandler: onChangedHandler,
               ),
             ),
           )
