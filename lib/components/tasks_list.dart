@@ -23,24 +23,32 @@ class TasksList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TasksData tasksData = Provider.of<TasksData>(context, listen: false);
-    List<Task> tasks = tasksData.tasks;
-    void Function(int) onDeleteTaskHandler = (index) => tasksData.deleteTask(index);
-    Function onChangedHandler = (index) => (bool newValue) => tasksData.toggleChecked(index);
+    // TasksData tasksData = Provider.of<TasksData>(context, listen: false);
+    // List<Task> tasks = tasksData.tasks;
+    // void Function(int) onDeleteTaskHandler = (index) => tasksData.deleteTask(index);
+    // Function onChangedHandler = (index) => (bool newValue) => tasksData.toggleChecked(index);
 
-    return ListView.builder(
-      padding: const EdgeInsets.only(left: 20, top: 40, right: 20),
-      controller: _listViewScrollController,
-      itemBuilder: (context, index) {
-        return TaskTile(
-          key: Key(index.toString()),
-          taskText: tasks[index].taskText,
-          isChecked: tasks[index].isChecked,
-          onChangedHandler: onChangedHandler(index),
-          onDeleteTaskHandler: () => onDeleteTaskHandler(index),
+    return Consumer<TasksData>(
+      builder: (context, tasksData, child) {
+        List<Task> tasks = tasksData.tasks;
+        void Function(int) onDeleteTaskHandler = (index) => tasksData.deleteTask(index);
+        Function onChangedHandler = (index) => (bool newValue) => tasksData.toggleChecked(index);
+
+        return ListView.builder(
+          padding: const EdgeInsets.only(left: 20, top: 40, right: 20),
+          controller: _listViewScrollController,
+          itemBuilder: (context, index) {
+            return TaskTile(
+              key: Key(index.toString()),
+              taskText: tasks[index].taskText,
+              isChecked: tasks[index].isChecked,
+              onChangedHandler: onChangedHandler(index),
+              onDeleteTaskHandler: () => onDeleteTaskHandler(index),
+            );
+          },
+          itemCount: tasksData.tasksCount,
         );
       },
-      itemCount: tasks.length,
     );
   }
 }
