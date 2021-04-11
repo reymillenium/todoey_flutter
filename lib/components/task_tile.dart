@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Screens:
+import 'package:todoey_flutter/screens/update_task_screen.dart';
 
 // Components:
 import 'package:todoey_flutter/components/task_checkbox.dart';
@@ -18,6 +19,7 @@ class TaskTile extends StatelessWidget {
   final bool isChecked;
   final Function onChangedHandler;
   final Function onDeleteTaskHandler;
+  final Function onUpdateTaskHandler;
 
 // Constructor:
   const TaskTile({
@@ -26,6 +28,7 @@ class TaskTile extends StatelessWidget {
     this.isChecked,
     this.onChangedHandler,
     this.onDeleteTaskHandler,
+    this.onUpdateTaskHandler,
   }) : super(key: key);
 
   @override
@@ -51,9 +54,26 @@ class TaskTile extends StatelessWidget {
       //   // onChanged: (newValue) => onChangeHandler(newValue),
       //   onChanged: onChangedHandler,
       // ),
-      trailing: IconButton(
-        icon: Icon(Icons.delete),
-        onPressed: onDeleteTaskHandler,
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: onDeleteTaskHandler,
+          ),
+          IconButton(
+            icon: Icon(Icons.edit),
+            // onPressed: onUpdateTaskHandler,
+            onPressed: () {
+              showModalBottomSheet(
+                backgroundColor: Colors.transparent,
+                isScrollControlled: true,
+                context: context,
+                builder: (context) => UpdateTaskScreen(taskText: taskText),
+              );
+            },
+          ),
+        ],
       ),
     );
   }

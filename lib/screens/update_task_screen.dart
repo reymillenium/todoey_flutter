@@ -18,15 +18,15 @@ import 'package:todoey_flutter/utilities/constants.dart';
 
 class UpdateTaskScreen extends StatelessWidget {
   // Properties:
-  final taskText;
+  final String taskText;
 
   // Constructor:
-  UpdateTaskScreen(this.taskText);
+  UpdateTaskScreen({this.taskText});
 
   @override
   Widget build(BuildContext context) {
-    String taskText = '';
-    var onPressedHandler = (taskText) => Provider.of<TasksData>(context, listen: false).addTask(taskText);
+    // String taskText = '';
+    // var onPressedHandler = (taskText) => Provider.of<TasksData>(context, listen: false).addTask(taskText);
 
     return SingleChildScrollView(
       child: Container(
@@ -45,7 +45,7 @@ class UpdateTaskScreen extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                'Add Task',
+                'Update Task',
                 style: TextStyle(
                   color: kLightBlueBackground,
                   fontSize: 30,
@@ -53,7 +53,8 @@ class UpdateTaskScreen extends StatelessWidget {
               ),
 
               // Input
-              TextField(
+              TextFormField(
+                initialValue: taskText,
                 autofocus: true,
                 decoration: InputDecoration(
                   border: UnderlineInputBorder(
@@ -80,7 +81,7 @@ class UpdateTaskScreen extends StatelessWidget {
                 style: TextStyle(),
                 onChanged: (String newText) {
                   // setState(() {
-                  taskText = newText;
+                  // taskText = newText;
                   // });
                 },
               ),
@@ -94,14 +95,14 @@ class UpdateTaskScreen extends StatelessWidget {
                   elevation: 5.0,
                   child: MaterialButton(
                     onPressed: () {
-                      onPressedHandler(taskText);
+                      // onPressedHandler(taskText);
                       Navigator.pop(context);
                     },
                     // minWidth: 300.0,
                     minWidth: double.infinity,
                     height: 42.0,
                     child: Text(
-                      'Add',
+                      'Update',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18.0,
