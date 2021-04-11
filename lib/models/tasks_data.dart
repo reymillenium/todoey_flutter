@@ -1,6 +1,7 @@
 // Packages:
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 // Screens:
 import 'package:todoey_flutter/screens/tasks_screen.dart';
@@ -51,7 +52,8 @@ class TasksData extends ChangeNotifier {
   }
 
   void deleteTaskWithConfirm(int index, BuildContext context) {
-    _showDialog(index, context);
+    // _showDialog(index, context);
+    _createAlert(index: index, context: context).show();
   }
 
   String tasksCountLabel() {
@@ -95,5 +97,35 @@ class TasksData extends ChangeNotifier {
         );
       },
     );
+  }
+
+  Alert _createAlert({int index, BuildContext context, String message = ''}) {
+    return (Alert(
+      context: context,
+      type: AlertType.warning,
+      title: "Are you sure?",
+      // desc: message,
+      buttons: [
+        DialogButton(
+          child: Text(
+            "OK",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          onPressed: () {
+            _removeTask(index);
+            Navigator.of(context).pop();
+          },
+          width: 120,
+        ),
+        DialogButton(
+          child: Text(
+            "CANCEL",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          onPressed: () => Navigator.pop(context),
+          width: 120,
+        ),
+      ],
+    ));
   }
 }
