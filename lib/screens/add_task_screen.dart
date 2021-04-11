@@ -1,7 +1,12 @@
 // Packages:
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 // Screens:
+
+// Models:
+import 'package:todoey_flutter/models/task.dart';
+import 'package:todoey_flutter/models/tasks_data.dart';
 
 // Components:
 import 'package:todoey_flutter/components/tasks_list.dart';
@@ -13,12 +18,12 @@ import 'package:todoey_flutter/utilities/constants.dart';
 
 class AddTaskScreen extends StatefulWidget {
   // Properties:
-  final onPressedHandler;
+  // final onPressedHandler;
   // String taskText = '';
 
   const AddTaskScreen({
     Key key,
-    this.onPressedHandler,
+    // this.onPressedHandler,
     // this.context,
   }) : super(key: key);
 
@@ -28,18 +33,20 @@ class AddTaskScreen extends StatefulWidget {
 
 class _AddTaskScreenState extends State<AddTaskScreen> {
   // Properties:
-  Function onPressedHandler;
+  // Function onPressedHandler;
   String taskText = '';
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    onPressedHandler = widget.onPressedHandler;
+    // onPressedHandler = widget.onPressedHandler;
   }
 
   @override
   Widget build(BuildContext context) {
+    var onPressedHandler = (taskText) => Provider.of<TasksData>(context, listen: false).addTask(taskText);
+
     return SingleChildScrollView(
       child: Expanded(
         child: Container(

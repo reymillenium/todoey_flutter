@@ -19,51 +19,15 @@ import 'package:todoey_flutter/utilities/constants.dart';
 
 class TasksList extends StatelessWidget {
   // Properties:
-  final tasks;
-  // final Function onChangedHandler;
   final _listViewScrollController = ScrollController();
-
-  // Constructor:
-  TasksList({
-    this.tasks,
-    // this.onChangedHandler,
-  });
-
-  List<Widget> getTaskList() {
-    List<Widget> taskList = [];
-
-    tasks.asMap().forEach((index, task) {
-      Widget newTask = TaskTile(
-        taskText: task.taskText,
-        isChecked: task.isChecked,
-        key: Key(index.toString()),
-        // onChangedHandler: (index) => onChangedHandler(index),
-        // onChangedHandler: onChangedHandler(index),
-      );
-      taskList.add(newTask);
-    });
-
-    return taskList;
-  }
 
   @override
   Widget build(BuildContext context) {
     // TasksData tasksData = Provider.of<TasksData>(context, listen: true);
-    // List<Task> tasks = Provider.of<TasksData>(context, listen: true).tasks();
+    List<Task> tasks = Provider.of<TasksData>(context, listen: true).tasks();
     var onDeleteTaskHandler = (index) => Provider.of<TasksData>(context, listen: false).deleteTask(index);
-    // Function onChangedHandler = (index) {
-    //   return (bool newValue) => Provider.of<TasksData>(context, listen: false).toggleChecked(index);
-    //   // return (bool newValue) {
-    //   //   Provider.of<TasksData>(context, listen: false).toggleChecked(index);
-    //   // };
-    // };
     Function onChangedHandler = (index) => (bool newValue) => Provider.of<TasksData>(context, listen: false).toggleChecked(index);
 
-    // return ListView(
-    //   padding: const EdgeInsets.only(left: 20, top: 40, right: 20),
-    //   controller: _listViewScrollController,
-    //   children: getTaskList(),
-    // );
     return ListView.builder(
       padding: const EdgeInsets.only(left: 20, top: 40, right: 20),
       controller: _listViewScrollController,
@@ -74,7 +38,6 @@ class TasksList extends StatelessWidget {
           isChecked: tasks[index].isChecked,
           onChangedHandler: onChangedHandler(index),
           onDeleteTaskHandler: () => onDeleteTaskHandler(index),
-          // onChangedHandler: (newValue) {},
         );
       },
       itemCount: tasks.length,

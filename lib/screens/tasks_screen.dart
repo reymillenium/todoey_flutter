@@ -149,10 +149,10 @@ class _TasksScreenState extends State<TasksScreen> {
                 ),
               ),
               child: TasksList(
-                tasks: tasks,
-                // onChangedHandler: (index) => onChangedHandler(index),
-                // onChangedHandler: onChangedHandler,
-              ),
+                  // tasks: tasks,
+                  // onChangedHandler: (index) => onChangedHandler(index),
+                  // onChangedHandler: onChangedHandler,
+                  ),
             ),
           )
         ],
@@ -169,8 +169,8 @@ class _TasksScreenState extends State<TasksScreen> {
             isScrollControlled: true,
             context: context,
             builder: (context) => AddTaskScreen(
-              onPressedHandler: onPressedHandler,
-            ),
+                // onPressedHandler: onPressedHandler,
+                ),
           );
         },
       ),
