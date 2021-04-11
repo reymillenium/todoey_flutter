@@ -1,11 +1,13 @@
 // Packages:
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 // Screens:
 import 'package:todoey_flutter/screens/add_task_screen.dart';
 
 // Models:
 import 'package:todoey_flutter/models/task.dart';
+import 'package:todoey_flutter/models/tasks_data.dart';
 
 // Components:
 import 'package:todoey_flutter/components/tasks_list.dart';
@@ -23,11 +25,12 @@ class TasksScreen extends StatefulWidget {
 
 class _TasksScreenState extends State<TasksScreen> {
   // Properties:
-  List<Task> tasks = [
-    Task(taskText: 'Buy milk', isChecked: false),
-    Task(taskText: 'Buy eggs', isChecked: false),
-    Task(taskText: 'Buy bread', isChecked: true),
-  ];
+  // List<Task> tasks = [
+  //   Task(taskText: 'Buy milk', isChecked: false),
+  //   Task(taskText: 'Buy eggs', isChecked: false),
+  //   Task(taskText: 'Buy bread', isChecked: true),
+  // ];
+  // List<Task> tasks = Provider.of<TasksList>(context).tasks;
   final _listViewScrollController = ScrollController();
 
   void scrollListViewSmoothly() {
@@ -40,30 +43,53 @@ class _TasksScreenState extends State<TasksScreen> {
     );
   }
 
-  Function onChangedHandler(int index) {
-    return (bool newValue) {
-      setState(() {
-        // tasks[index].isChecked = newValue;
-        tasks[index].toggleChecked();
-      });
-    };
-  }
-
-  void onPressedHandler(String taskText) {
-    Task newTask = Task(taskText: taskText);
-    setState(() {
-      tasks.add(newTask);
-    });
-  }
-
-  String getTaskAmountLabel() {
-    int taskAmount = tasks.length;
-    String pluralization = taskAmount == 1 ? '' : 's';
-    return '$taskAmount task$pluralization';
-  }
+  // Function onChangedHandler(int index) {
+  //   return (bool newValue) {
+  //     setState(() {
+  //       // tasks[index].isChecked = newValue;
+  //       tasks[index].toggleChecked();
+  //     });
+  //   };
+  // }
+  //
+  // void onPressedHandler(String taskText) {
+  //   Task newTask = Task(taskText: taskText);
+  //   setState(() {
+  //     tasks.add(newTask);
+  //   });
+  // }
+  //
+  // String getTaskAmountLabel() {
+  //   int taskAmount = tasks.length;
+  //   String pluralization = taskAmount == 1 ? '' : 's';
+  //   return '$taskAmount task$pluralization';
+  // }
 
   @override
   Widget build(BuildContext context) {
+    TasksData tasksData = Provider.of<TasksData>(context, listen: true);
+    List<Task> tasks = Provider.of<TasksData>(context, listen: true).tasks();
+
+    Function onChangedHandler(int index) {
+      return (bool newValue) {
+        tasksData.toggleChecked(index);
+      };
+    }
+
+    void onPressedHandler(String taskText) {
+      tasksData.addTask(taskText);
+    }
+
+    void onDeleteTaskHandler(int index) {
+      tasksData.deleteTask(index);
+    }
+
+    String getTaskAmountLabel() {
+      int taskAmount = tasksData.tasksAmount();
+      String pluralization = taskAmount == 1 ? '' : 's';
+      return '$taskAmount task$pluralization';
+    }
+
     return Scaffold(
       // backgroundColor: Colors.lightBlueAccent,
       backgroundColor: kLightBlueBackground,

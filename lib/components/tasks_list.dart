@@ -1,11 +1,13 @@
 // Packages:
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 // import 'package:uuid/uuid.dart';
 
 // Screens:
 
 // Models:
 import 'package:todoey_flutter/models/task.dart';
+import 'package:todoey_flutter/models/tasks_data.dart';
 
 // Components:
 import 'package:todoey_flutter/components/task_tile.dart';
@@ -46,6 +48,9 @@ class TasksList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TasksData tasksData = Provider.of<TasksData>(context, listen: true);
+    // List<Task> tasks = Provider.of<TasksData>(context, listen: true).tasks();
+
     // return ListView(
     //   padding: const EdgeInsets.only(left: 20, top: 40, right: 20),
     //   controller: _listViewScrollController,

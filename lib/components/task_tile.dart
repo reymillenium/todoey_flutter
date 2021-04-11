@@ -17,6 +17,7 @@ class TaskTile extends StatelessWidget {
   final String taskText;
   final bool isChecked;
   final Function onChangedHandler;
+  final Function onDeleteTaskHandler;
 
 // Constructor:
   const TaskTile({
@@ -24,12 +25,17 @@ class TaskTile extends StatelessWidget {
     this.taskText,
     this.isChecked,
     this.onChangedHandler,
+    this.onDeleteTaskHandler,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Text(
+      leading: IconButton(
+        icon: Icon(Icons.delete),
+        onPressed: onDeleteTaskHandler,
+      ),
+      title: Text(
         taskText,
         style: TextStyle(
           decoration: (isChecked ? TextDecoration.lineThrough : TextDecoration.none),
