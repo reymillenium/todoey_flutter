@@ -18,13 +18,9 @@ import 'package:todoey_flutter/utilities/constants.dart';
 
 class AddTaskScreen extends StatefulWidget {
   // Properties:
-  // final onPressedHandler;
-  // String taskText = '';
 
   const AddTaskScreen({
     Key key,
-    // this.onPressedHandler,
-    // this.context,
   }) : super(key: key);
 
   @override
@@ -33,14 +29,12 @@ class AddTaskScreen extends StatefulWidget {
 
 class _AddTaskScreenState extends State<AddTaskScreen> {
   // Properties:
-  // Function onPressedHandler;
   String taskText = '';
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    // onPressedHandler = widget.onPressedHandler;
   }
 
   @override
@@ -112,7 +106,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   // borderRadius: BorderRadius.circular(12.0),
                   elevation: 5.0,
                   child: MaterialButton(
-                    // onPressed: () => onPressedHandler(taskText),
                     onPressed: () {
                       onPressedHandler(taskText);
                       Navigator.pop(context);

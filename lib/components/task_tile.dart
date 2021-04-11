@@ -44,7 +44,6 @@ class TaskTile extends StatelessWidget {
       trailing: TaskCheckbox(
         isChecked: isChecked,
         // onChanged: (newValue) => onChangeHandler(newValue),
-        // onChanged: onChangedHandler(key),
         onChanged: onChangedHandler,
       ),
     );

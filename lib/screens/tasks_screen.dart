@@ -6,12 +6,10 @@ import 'package:provider/provider.dart';
 import 'package:todoey_flutter/screens/add_task_screen.dart';
 
 // Models:
-import 'package:todoey_flutter/models/task.dart';
 import 'package:todoey_flutter/models/tasks_data.dart';
 
 // Components:
 import 'package:todoey_flutter/components/tasks_list.dart';
-import 'package:todoey_flutter/components/task_tile.dart';
 
 // Helpers:
 
@@ -25,18 +23,11 @@ class TasksScreen extends StatefulWidget {
 
 class _TasksScreenState extends State<TasksScreen> {
   // Properties:
-  // List<Task> tasks = [
-  //   Task(taskText: 'Buy milk', isChecked: false),
-  //   Task(taskText: 'Buy eggs', isChecked: false),
-  //   Task(taskText: 'Buy bread', isChecked: true),
-  // ];
-  // List<Task> tasks = Provider.of<TasksList>(context).tasks;
   final _listViewScrollController = ScrollController();
 
   void scrollListViewSmoothly() {
     _listViewScrollController.animateTo(
       _listViewScrollController.position.maxScrollExtent,
-      // duration: Duration(seconds: 1),
       duration: Duration(milliseconds: 500),
       // curve: Curves.fastOutSlowIn,
       curve: Curves.easeOut,
@@ -68,21 +59,6 @@ class _TasksScreenState extends State<TasksScreen> {
   @override
   Widget build(BuildContext context) {
     TasksData tasksData = Provider.of<TasksData>(context, listen: true);
-    List<Task> tasks = Provider.of<TasksData>(context, listen: true).tasks();
-
-    Function onChangedHandler(int index) {
-      return (bool newValue) {
-        tasksData.toggleChecked(index);
-      };
-    }
-
-    void onPressedHandler(String taskText) {
-      tasksData.addTask(taskText);
-    }
-
-    void onDeleteTaskHandler(int index) {
-      tasksData.deleteTask(index);
-    }
 
     String getTaskAmountLabel() {
       int taskAmount = tasksData.tasksAmount();
@@ -91,7 +67,6 @@ class _TasksScreenState extends State<TasksScreen> {
     }
 
     return Scaffold(
-      // backgroundColor: Colors.lightBlueAccent,
       backgroundColor: kLightBlueBackground,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,11 +123,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   topRight: Radius.circular(20),
                 ),
               ),
-              child: TasksList(
-                  // tasks: tasks,
-                  // onChangedHandler: (index) => onChangedHandler(index),
-                  // onChangedHandler: onChangedHandler,
-                  ),
+              child: TasksList(),
             ),
           )
         ],
@@ -168,9 +139,7 @@ class _TasksScreenState extends State<TasksScreen> {
             backgroundColor: Colors.transparent,
             isScrollControlled: true,
             context: context,
-            builder: (context) => AddTaskScreen(
-                // onPressedHandler: onPressedHandler,
-                ),
+            builder: (context) => AddTaskScreen(),
           );
         },
       ),
