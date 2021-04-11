@@ -16,17 +16,38 @@ import 'package:todoey_flutter/components/tasks_list.dart';
 // Utilities:
 import 'package:todoey_flutter/utilities/constants.dart';
 
-class UpdateTaskScreen extends StatelessWidget {
+class UpdateTaskScreen extends StatefulWidget {
   // Properties:
+  final int index;
   final String taskText;
 
   // Constructor:
-  UpdateTaskScreen({this.taskText});
+  UpdateTaskScreen({
+    this.index,
+    this.taskText,
+  });
+
+  @override
+  _UpdateTaskScreenState createState() => _UpdateTaskScreenState();
+}
+
+class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
+  // Properties:
+  int _index;
+  String taskText;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _index = widget.index;
+    taskText = widget.taskText;
+  }
 
   @override
   Widget build(BuildContext context) {
-    // String taskText = '';
-    // var onPressedHandler = (taskText) => Provider.of<TasksData>(context, listen: false).addTask(taskText);
+    TasksData tasksData = Provider.of<TasksData>(context, listen: false);
+    void Function(int, String) onUpdateTaskHandler = (index, newTaskText) => tasksData.updateTask(index, newTaskText);
 
     return SingleChildScrollView(
       child: Container(
@@ -54,7 +75,7 @@ class UpdateTaskScreen extends StatelessWidget {
 
               // Input
               TextFormField(
-                initialValue: taskText,
+                initialValue: widget.taskText,
                 autofocus: true,
                 decoration: InputDecoration(
                   border: UnderlineInputBorder(
@@ -80,13 +101,13 @@ class UpdateTaskScreen extends StatelessWidget {
                 ),
                 style: TextStyle(),
                 onChanged: (String newText) {
-                  // setState(() {
-                  // taskText = newText;
-                  // });
+                  setState(() {
+                    taskText = newText;
+                  });
                 },
               ),
 
-              // Add button:
+              // Update button:
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 30.0),
                 child: Material(
@@ -95,7 +116,7 @@ class UpdateTaskScreen extends StatelessWidget {
                   elevation: 5.0,
                   child: MaterialButton(
                     onPressed: () {
-                      // onPressedHandler(taskText);
+                      onUpdateTaskHandler(_index, taskText);
                       Navigator.pop(context);
                     },
                     // minWidth: 300.0,

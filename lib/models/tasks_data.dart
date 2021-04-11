@@ -39,7 +39,6 @@ class TasksData extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Public Methods:
   void updateTask(int index, String taskText) {
     Task updatingTask = _tasks[index];
     updatingTask.taskText = taskText;
@@ -51,21 +50,20 @@ class TasksData extends ChangeNotifier {
     notifyListeners();
   }
 
-  void deleteTask(int index, BuildContext context) {
-    // _tasks.removeAt(index);
-    // notifyListeners();
+  void deleteTaskWithConfirm(int index, BuildContext context) {
     _showDialog(index, context);
-  }
-
-  void _removeTask(int index) {
-    _tasks.removeAt(index);
-    notifyListeners();
   }
 
   String tasksCountLabel() {
     int taskAmount = tasksCount;
     String pluralization = taskAmount == 1 ? '' : 's';
     return '$taskAmount task$pluralization';
+  }
+
+  // Private methods:
+  void _removeTask(int index) {
+    _tasks.removeAt(index);
+    notifyListeners();
   }
 
   void _showDialog(int index, BuildContext context) {
