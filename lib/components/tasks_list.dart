@@ -32,7 +32,7 @@ class TasksList extends StatelessWidget {
       builder: (context, tasksData, child) {
         List<Task> tasks = tasksData.tasks;
         void Function(int, BuildContext) onDeleteTaskHandler = (index, context) => tasksData.deleteTaskWithConfirm(index, context);
-        Function onChangedHandler = (index) => (bool newValue) => tasksData.toggleChecked(index);
+        Function onCheckTaskHandler = (index) => (bool newValue) => tasksData.toggleChecked(index);
 
         return ListView.builder(
           padding: const EdgeInsets.only(left: 0, top: 20, right: 0),
@@ -43,7 +43,7 @@ class TasksList extends StatelessWidget {
               index: index,
               taskText: tasks[index].taskText,
               isChecked: tasks[index].isChecked,
-              onChangedHandler: onChangedHandler(index),
+              onCheckTaskHandler: onCheckTaskHandler(index),
               onDeleteTaskHandler: () => onDeleteTaskHandler(index, context),
             );
           },

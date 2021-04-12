@@ -18,7 +18,7 @@ class TaskTile extends StatelessWidget {
   final int index;
   final String taskText;
   final bool isChecked;
-  final Function onChangedHandler;
+  final Function onCheckTaskHandler;
   final Function onDeleteTaskHandler;
   final Function onUpdateTaskHandler;
 
@@ -28,7 +28,7 @@ class TaskTile extends StatelessWidget {
     this.index,
     this.taskText,
     this.isChecked,
-    this.onChangedHandler,
+    this.onCheckTaskHandler,
     this.onDeleteTaskHandler,
     this.onUpdateTaskHandler,
   }) : super(key: key);
@@ -38,8 +38,8 @@ class TaskTile extends StatelessWidget {
     return ListTile(
       leading: TaskCheckbox(
         isChecked: isChecked,
-        // onChanged: (newValue) => onChangeHandler(newValue),
-        onChanged: onChangedHandler,
+        // onChanged: (newValue) => onCheckTaskHandler(newValue),
+        onChanged: onCheckTaskHandler,
       ),
       title: Text(
         taskText,
