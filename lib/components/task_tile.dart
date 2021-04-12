@@ -20,7 +20,6 @@ class TaskTile extends StatelessWidget {
   final bool isChecked;
   final Function onCheckTaskHandler;
   final Function onDeleteTaskHandler;
-  final Function onUpdateTaskHandler;
 
 // Constructor:
   const TaskTile({
@@ -30,7 +29,6 @@ class TaskTile extends StatelessWidget {
     this.isChecked,
     this.onCheckTaskHandler,
     this.onDeleteTaskHandler,
-    this.onUpdateTaskHandler,
   }) : super(key: key);
 
   @override
