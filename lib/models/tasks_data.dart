@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'dart:collection';
 
 // Screens:
 import 'package:todoey_flutter/screens/tasks_screen.dart';
@@ -35,8 +36,8 @@ class TasksData extends ChangeNotifier {
     return _tasks.length;
   }
 
-  List<Task> get tasks {
-    return _tasks;
+  UnmodifiableListView<Task> get tasks {
+    return UnmodifiableListView(_tasks);
   }
 
   // Public Methods:
