@@ -59,7 +59,12 @@ class TasksData extends ChangeNotifier {
   }
 
   void reorderTasks(int oldIndex, int newIndex) {
-    _tasks.insert(newIndex - 1, _tasks.removeAt(oldIndex));
+    if (newIndex > oldIndex) {
+      newIndex -= 1;
+    }
+    // final item = _tasks.removeAt(oldIndex);
+    // _tasks.insert(newIndex, item);
+    _tasks.insert(newIndex, _tasks.removeAt(oldIndex));
     notifyListeners();
   }
 
