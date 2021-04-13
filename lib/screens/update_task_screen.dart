@@ -75,6 +75,7 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
 
               // Input
               TextFormField(
+                autocorrect: false,
                 initialValue: widget.taskText,
                 autofocus: true,
                 decoration: InputDecoration(
