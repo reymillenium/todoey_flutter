@@ -33,21 +33,42 @@ class TasksList extends StatelessWidget {
         List<Task> tasks = tasksData.tasks;
         void Function(int, BuildContext) onDeleteTaskHandler = (index, context) => tasksData.deleteTaskWithConfirm(index, context);
         Function onCheckTaskHandler = (index) => (bool newValue) => tasksData.toggleChecked(index);
+        void Function(int, int) onReorderTasksHandler = (oldIndex, newIndex) => tasksData.reorderTasks(oldIndex, newIndex);
 
-        return ListView.builder(
-          padding: const EdgeInsets.only(left: 0, top: 20, right: 0),
-          controller: _listViewScrollController,
-          itemBuilder: (context, index) {
-            return TaskTile(
-              key: Key(index.toString()),
-              index: index,
-              taskText: tasks[index].taskText,
-              isChecked: tasks[index].isChecked,
-              onCheckTaskHandler: onCheckTaskHandler(index),
-              onDeleteTaskHandler: () => onDeleteTaskHandler(index, context),
-            );
+        // return ListView.builder(
+        //   padding: const EdgeInsets.only(left: 0, top: 20, right: 0),
+        //   controller: _listViewScrollController,
+        //   itemBuilder: (context, index) {
+        //     return TaskTile(
+        //       key: Key(index.toString()),
+        //       index: index,
+        //       taskText: tasks[index].taskText,
+        //       isChecked: tasks[index].isChecked,
+        //       onCheckTaskHandler: onCheckTaskHandler(index),
+        //       onDeleteTaskHandler: () => onDeleteTaskHandler(index, context),
+        //     );
+        //   },
+        //   itemCount: tasksData.tasksCount,
+        // );
+
+        return ReorderableListView(
+          children: List.generate(
+            tasksData.tasksCount,
+            (index) {
+              return TaskTile(
+                key: Key(index.toString()),
+                index: index,
+                taskText: tasks[index].taskText,
+                isChecked: tasks[index].isChecked,
+                onCheckTaskHandler: onCheckTaskHandler(index),
+                onDeleteTaskHandler: () => onDeleteTaskHandler(index, context),
+              );
+            },
+          ).toList(),
+          onReorder: (int oldIndex, int newIndex) {
+            onReorderTasksHandler(oldIndex, newIndex);
           },
-          itemCount: tasksData.tasksCount,
+          //Divider(color: Theme.of(context).accentColor),
         );
       },
     );

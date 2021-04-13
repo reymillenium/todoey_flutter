@@ -58,6 +58,11 @@ class TasksData extends ChangeNotifier {
     notifyListeners();
   }
 
+  void reorderTasks(int oldIndex, int newIndex) {
+    _tasks.insert(newIndex - 1, _tasks.removeAt(oldIndex));
+    notifyListeners();
+  }
+
   void deleteTaskWithConfirm(int index, BuildContext context) {
     // _showDialog(index, context);
     _createAlert(index: index, context: context).show();
