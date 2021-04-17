@@ -47,6 +47,7 @@ class TasksList extends StatelessWidget {
         // );
 
         return ReorderableListView(
+          scrollController: _listViewScrollController,
           children: List.generate(
             tasksData.tasksCount,
             (index) {
