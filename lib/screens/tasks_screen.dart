@@ -50,11 +50,6 @@ class _TasksScreenState extends State<TasksScreen> {
   //   });
   // }
   //
-  // String getTaskAmountLabel() {
-  //   int taskAmount = tasks.length;
-  //   String pluralization = taskAmount == 1 ? '' : 's';
-  //   return '$taskAmount task$pluralization';
-  // }
 
   @override
   Widget build(BuildContext context) {
