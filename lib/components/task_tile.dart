@@ -15,6 +15,7 @@ import 'package:todoey_flutter/utilities/constants.dart';
 class TaskTile extends StatelessWidget {
   // Properties:
   final Key key;
+  final int id;
   final int index;
   final String taskText;
   final bool isChecked;
@@ -24,6 +25,7 @@ class TaskTile extends StatelessWidget {
 // Constructor:
   const TaskTile({
     this.key,
+    this.id,
     this.index,
     this.taskText,
     this.isChecked,
@@ -59,7 +61,7 @@ class TaskTile extends StatelessWidget {
                 backgroundColor: Colors.transparent,
                 isScrollControlled: true,
                 context: context,
-                builder: (context) => UpdateTaskScreen(index: index, taskText: taskText),
+                builder: (context) => UpdateTaskScreen(id: id, index: index, taskText: taskText, isChecked: isChecked),
               );
             },
           ),

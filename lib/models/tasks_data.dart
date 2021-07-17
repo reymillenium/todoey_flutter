@@ -20,15 +20,15 @@ import 'package:todoey_flutter/utilities/constants.dart';
 class TasksData extends ChangeNotifier {
   // Properties:
   List<Task> _tasks = [
-    Task(taskText: 'Buy milk', isChecked: false),
-    Task(taskText: 'Buy eggs', isChecked: false),
-    Task(taskText: 'Buy Cuban Bread', isChecked: true),
-    Task(taskText: 'Buy chicken', isChecked: false),
-    Task(taskText: 'Buy apples', isChecked: false),
-    Task(taskText: 'Buy pork', isChecked: false),
-    Task(taskText: 'Buy lots of Corona beer', isChecked: false),
-    Task(taskText: 'Finish this app', isChecked: false),
-    Task(taskText: 'Watch a movie', isChecked: false),
+    Task(id: 1, taskText: 'Buy milk', isChecked: false),
+    Task(id: 2, taskText: 'Buy eggs', isChecked: false),
+    Task(id: 3, taskText: 'Buy Cuban Bread', isChecked: true),
+    Task(id: 4, taskText: 'Buy chicken', isChecked: false),
+    Task(id: 5, taskText: 'Buy apples', isChecked: false),
+    Task(id: 6, taskText: 'Buy pork', isChecked: false),
+    Task(id: 7, taskText: 'Buy lots of Corona beer', isChecked: false),
+    Task(id: 8, taskText: 'Finish this app', isChecked: false),
+    Task(id: 9, taskText: 'Watch a movie', isChecked: false),
   ];
 
   // Getters:
@@ -40,6 +40,10 @@ class TasksData extends ChangeNotifier {
     return UnmodifiableListView(_tasks);
   }
 
+  // List<Task> get tasks {
+  //   return _tasks;
+  // }
+
   // Public Methods:
   void addTask(String taskText) {
     Task newTask = Task(taskText: taskText);
@@ -50,6 +54,21 @@ class TasksData extends ChangeNotifier {
   void updateTask(int index, String taskText) {
     Task updatingTask = _tasks[index];
     updatingTask.taskText = taskText;
+    notifyListeners();
+  }
+
+  void updateTaskNew(int id, int index, String taskText, bool isChecked) {
+    Task updatingTask = _tasks.firstWhere((task) => task.id == id);
+    // Task updatingTask = _tasks[index];
+    Task newTask = Task(id: id, isChecked: isChecked, taskText: taskText);
+    // Does not works: The reference gets lost:
+    // updatingTask = newTask;
+    // It works
+    // updatingTask.taskText = taskText;
+    // It works:
+    // _tasks[index] = newTask;
+    // It also works:
+    updatingTask.updateFrom(newTask);
     notifyListeners();
   }
 

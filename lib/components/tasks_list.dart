@@ -53,6 +53,7 @@ class TasksList extends StatelessWidget {
             (index) {
               return TaskTile(
                 key: Key(index.toString()),
+                id: tasks[index].id,
                 index: index,
                 taskText: tasks[index].taskText,
                 isChecked: tasks[index].isChecked,

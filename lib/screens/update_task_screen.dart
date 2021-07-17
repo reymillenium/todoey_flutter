@@ -18,13 +18,17 @@ import 'package:todoey_flutter/utilities/constants.dart';
 
 class UpdateTaskScreen extends StatefulWidget {
   // Properties:
+  final int id;
   final int index;
   final String taskText;
+  final bool isChecked;
 
   // Constructor:
   UpdateTaskScreen({
+    this.id,
     this.index,
     this.taskText,
+    this.isChecked,
   });
 
   @override
@@ -33,21 +37,26 @@ class UpdateTaskScreen extends StatefulWidget {
 
 class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
   // Properties:
+  int _id;
   int _index;
-  String taskText;
+  String _taskText;
+  bool _isChecked;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    _id = widget.id;
     _index = widget.index;
-    taskText = widget.taskText;
+    _taskText = widget.taskText;
+    _isChecked = widget.isChecked;
   }
 
   @override
   Widget build(BuildContext context) {
     TasksData tasksData = Provider.of<TasksData>(context, listen: false);
     void Function(int, String) onUpdateTaskHandler = (index, newTaskText) => tasksData.updateTask(index, newTaskText);
+    void Function(int, int, String, bool) onUpdateTaskHandlerNew = (id, index, newTaskText, isChecked) => tasksData.updateTaskNew(id, index, newTaskText, isChecked);
 
     return SingleChildScrollView(
       child: Container(
@@ -103,7 +112,7 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
                 style: TextStyle(),
                 onChanged: (String newText) {
                   setState(() {
-                    taskText = newText;
+                    _taskText = newText;
                   });
                 },
               ),
@@ -117,7 +126,8 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
                   elevation: 5.0,
                   child: MaterialButton(
                     onPressed: () {
-                      onUpdateTaskHandler(_index, taskText);
+                      // onUpdateTaskHandler(_index, _taskText);
+                      onUpdateTaskHandlerNew(_id, _index, _taskText, _isChecked);
                       Navigator.pop(context);
                     },
                     // minWidth: 300.0,
